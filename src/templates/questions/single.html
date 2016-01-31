@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block content %}
+<form action="" method="POST">{% csrf_token %}
+  {{ form.errors }}
+  <h1>{{ instance.text }}</h1>
+  {{ user_answer.user }}
+  <input type="hidden" name="question_id" value="{{ instance.pk }}">
+
+  <h3>Your answer</h3>
+  {% for ans in instance.answer_set.all %}
+    <input type="radio" name="answer_id" value="{{ ans.pk }}" {% if user_answer.my_answer.id == ans.id %}checked=checked{% endif %}> {{ ans.text }}<br>
+  {% endfor %}
+
+  <br>
+  Importance: {{ form.important_level }}
+
+  <h3>Your coworker's ideal answer</h3>
+  {% for ans in instance.answer_set.all %}
+    <input type="radio" name="their_answer_id" value="{{ ans.pk }}" {% if user_answer.their_answer.id == ans.id %}checked=checked{% endif %}> {{ ans.text }}<br>
+  {% endfor %}
+
+    <input type="radio" name="their_answer_id" value="-1" {% if not user_answer.their_answer.id %}checked=checked{% endif %}> Holds no importance <br>
+
+  <br>
+  Importance: {{ form.their_important_level }}<br><br>
+
+  <input type="submit" name="name" value="submit">
+</form>
+
+
+{% endblock %}
