@@ -6,3 +6,5 @@ lib/
 
 .venv/
 *.pyc
+
+db.sqlite3
