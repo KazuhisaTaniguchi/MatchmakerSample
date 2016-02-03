@@ -30,3 +30,13 @@ def get_points(user_a, user_b):
     if percent == 0:
         percent = 0.0000001
     return percent, num_question
+
+
+def get_match(user_a, user_b):
+    a = get_points(user_a, user_b)
+    b = get_points(user_b, user_a)
+
+    number_of_questions = b[1]
+    match_decimal = (Decimal(a[0]) * Decimal(b[0])) ** (1/Decimal(number_of_questions))
+
+    return match_decimal, number_of_questions
