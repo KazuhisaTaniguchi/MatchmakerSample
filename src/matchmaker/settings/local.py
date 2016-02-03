@@ -58,6 +58,7 @@ INSTALLED_APPS = (
     # my apps
     'newsletter',
     'questions',
+    'matches',
 )
 
 MIDDLEWARE_CLASSES = (
